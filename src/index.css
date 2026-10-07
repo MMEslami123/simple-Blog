@@ -1,0 +1,13 @@
+@import "tailwindcss";
+body {
+  background-color: lightgray;
+}
+.delete-btn.ant-btn {
+  background: #f54900;
+  color: #fff;
+  border: none !important;
+}
+.delete-btn.ant-btn:hover {
+  background: #f96719 !important;
+  color: white !important;
+}
