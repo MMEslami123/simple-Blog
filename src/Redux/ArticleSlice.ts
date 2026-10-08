@@ -7,7 +7,7 @@ interface ArticleState {
     current: Article | null
     loading: boolean
 }
-const BASE_URL = "https://article-db.onrender.com";
+const BASE_URL = "https://article-db.onrender.com/articles";
 
 export const fetchArticles = createAsyncThunk("articles/fetchAll", async () => {
     const { data } = await axios.get(BASE_URL);
