@@ -6,6 +6,7 @@ import { ClockCircleOutlined, DeleteFilled, EditOutlined, FormOutlined, ProductO
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { deleteArticle, fetchArticleById } from "../../Redux/ArticleSlice";
 
+message.config({ top: window.innerHeight / 2 - 20 })
 const Articles = () => {
     const [deleteHover, setDeleteHover] = useState(false)
     const [editHover, setEditHover] = useState(false)
@@ -17,7 +18,6 @@ const Articles = () => {
     const id = useParams().articleId!;
     const { token } = theme.useToken()
     const navigate = useNavigate();
-    message.config({ top: innerHeight / 2 - 20 })
     useEffect(() => {
         dispatch(fetchArticleById(id))
     }, [dispatch, id])
@@ -46,16 +46,16 @@ const Articles = () => {
             <Header>
                 <NavBar />
             </Header>
-            <Content className="max-w-7xl mx-auto px-4 pt-36">
+            <Content className="w-full max-w-7xl mx-auto px-4 pt-36">
                 <Row className="justify-center" gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, { xs: 16, sm: 16, md: 24, lg: 0 }]}>
-                    <Col lg={8} md={14} sm={12}>
+                    <Col xs={24} sm={12} md={14} lg={8}>
                         <Card
                             loading={loading}
                             style={{ borderRadius: 12 }}
                             styles={{ body: { padding: 0, overflow: "hidden" }, cover: { padding: "0px 16px" } }}
                             cover={
                                 loading ? (
-                                    <Skeleton.Image active style={{ width: "100%", height: 200 }} />
+                                    <Skeleton.Image active />
                                 ) : (
                                     <img loading="lazy" src={article?.image} className="rounded-lg! relative -top-5" alt="article" />
                                 )
@@ -67,21 +67,27 @@ const Articles = () => {
                                 gap={20}
                                 style={{ padding: 16 }}
                             >
-                                <Title level={3} style={{ margin: 0, textAlign: "center" }}>
-                                    {article?.title}
-                                </Title>
-                                <Space>
-                                    <Text><EditOutlined /></Text>
-                                    <Text>نویسنده: {article?.writter}</Text>
-                                </Space>
-                                <Space>
-                                    <Text><ClockCircleOutlined /></Text>
-                                    <Text>مدت زمان مطالعه: {article?.readingTime}</Text>
-                                </Space>
-                                <Space>
-                                    <Text><ProductOutlined /></Text>
-                                    <Text>دسته بندی: {article?.category}</Text>
-                                </Space>
+                                {loading ? (
+                                    <Skeleton active paragraph={{ rows: 3 }} />
+                                ) : (
+                                    <>
+                                        <Title level={3} style={{ margin: 0, textAlign: "center" }}>
+                                            {article?.title}
+                                        </Title>
+                                        <Space>
+                                            <Text><EditOutlined /></Text>
+                                            <Text>نویسنده: {article?.writter}</Text>
+                                        </Space>
+                                        <Space>
+                                            <Text><ClockCircleOutlined /></Text>
+                                            <Text>مدت زمان مطالعه: {article?.readingTime}</Text>
+                                        </Space>
+                                        <Space>
+                                            <Text><ProductOutlined /></Text>
+                                            <Text>دسته بندی: {article?.category}</Text>
+                                        </Space>
+                                    </>
+                                )}
                             </Flex>
                             <Flex justify="center" gap={5} className="my-5!">
                                 <Button
@@ -117,7 +123,7 @@ const Articles = () => {
                             </Flex>
                         </Card>
                     </Col>
-                    <Col lg={16} md={24}>
+                    <Col xs={24} md={24} lg={16}>
                         <Space vertical>
                             <Paragraph>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</Paragraph>
                             <Paragraph>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</Paragraph>

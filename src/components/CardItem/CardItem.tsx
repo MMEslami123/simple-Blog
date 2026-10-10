@@ -15,13 +15,15 @@ const CardItem: FC<ArticleProps> = ({ articles, loading }) => {
     return (
         <Card
             loading={loading}
-            style={{ borderRadius: 12, overflow: "hidden",height:"fit-content"}}
-            styles={{ body: { padding: 0} }}
+            style={{ borderRadius: 12, overflow: "hidden", height: "fit-content" }}
+            styles={{ body: { padding: 0 } }}
             cover={
                 loading ? (
-                    <Skeleton.Image active style={{ width: "100%", height: 200 }} />
+                    <div>
+                        <Skeleton.Image active/>
+                    </div>
                 ) : (
-                    <img loading="lazy" src={articles.image} alt="article" style={{ width: "100%" }} />
+                    <img loading="lazy" src={articles.image} alt="article" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 )
             }
             className="hover:scale-105 transition! duration-200"
