@@ -1,12 +1,14 @@
+/* eslint-disable react-refresh/only-export-components */
 import Home from "./pages/Home/Home";
-import AboutUs from "./pages/AboutUs/AboutUs";
-import AddArticle from "./pages/AddArticle/AddArticle";
-import Articles from "./pages/Articles/Articles";
 import type React from "react";
-import Login from "./pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
-import Panel from "./pages/Panel/Panel";
+import { lazy } from "react";
 
+const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
+const AddArticle = lazy(() => import("./pages/AddArticle/AddArticle"));
+const Articles = lazy(() => import("./pages/Articles/Articles"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const Panel = lazy(() => import("./pages/Panel/Panel"));
 
 export interface MyRoute {
     path: string,
